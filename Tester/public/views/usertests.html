@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div ng-controller="adminCtrl as admin">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <br/>
+<h1 style="color:#51F358;" align="center" >Test results </h1>
+ <button  type="button"  style="margin-left: 90%;" class="btn btn-logged btn-success" aria-haspopup="true" aria-expanded="false"><a style="color:white;" href="#/dashboard/{{dashboard.userId}}">Back&nbsp;</a></button></nav></div>
+
+
+                   	<br>
+				     <div  style="" class="list group" ng-repeat="T in dashboard.testtakenDetails">
+				     <a ng-click="showForm = !showForm"  href=""><h2 style="color: white"> Test {{$index+1}}</h2></a>
+				      <div ng-show="showForm" >
+				      <a href="#/liveTest/{{dashboard.userId}}/{{T.test[0]}}" class="list-group-item ">Test ID: {{T.test[0]}}</a>
+				      <a class="list-group-item ">Correct Ans: {{T.totalCorrectAnswers}}</a>
+				      <a class="list-group-item ">Wrong Ans: {{T.totalWrongAnswers}}</a>
+				      <a class="list-group-item"> Score: {{T.score}}</a>
+				       <a class="list-group-item"> Total Time Taken: {{T.timeTaken}} Seconds</a>
+				      <br/><br>
+				    </div>
+
+				</ul>
+			</div>
+				   
+            </div>

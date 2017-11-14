@@ -1,0 +1,170 @@
+
+
+<style >
+	.imgwrapper {
+   width: 100%;
+}
+</style>
+ <!-- W3 schools styles-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div ng-controller="dashCtrl as dashboard">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+<br/>
+            <h1 align="center" style="color:white;">{{dashboard.heading}}</h1>
+
+
+
+  <ul align="right" class="nav navbar-nav pull-right">
+		<button  type="button"  style="margin-bottom: 5%" class="btn btn-logged btn-success dropdown-toggle" ng-init="dashboard.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome! {{dashboard.user}}&nbsp;<span class="caret"></span></button>
+          <ul  class="dropdown-menu">
+            <li align="center"><a href="" ng-click="dashboard.logout()">Logout</a></li>
+          </ul>
+        </ul>
+      </div>
+      <br/>
+</nav>
+
+
+<div>
+
+
+
+
+ <section class="mainSection" >
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <div class="container-fluid buttonSection">
+          <div class="row">
+
+          	<!-- Button to take a test -->
+            <div class="col-md-4" >
+            	<a href="#/takeTest/{{dashboard.userId}}">
+            <img src="img/test 1.jpg" class="imgwrapper" class="img-rounded" class="img-responsive">
+
+              <div style="padding-top: 2%;margin-top: 5%;margin-bottom: 15%;" class="btn btn-lg btn-primary btn-block">Take Test</div>
+          </a>
+            </div>
+
+
+            <!-- Button for taken tests -->
+            <div class="col-md-4">
+            	<a href="#/dashboard/{{dashboard.userId}}/usertests"> 
+            	<img src="img/test 2.jpg" class="imgwrapper" class="img-rounded" alt="Cinque Terre" >
+            	<div class="btn btn-lg btn-success btn-block"  style="padding-top: 2%;margin-top: 5%;margin-bottom: 15%;" >Test Taken</div></a>
+              
+
+            </div>
+       
+
+            <!-- Button to see performance -->
+            <div class="col-md-4">
+            	<a data-id="{{dashboard.testtakenDetailsforgraph}}" data-user="{{dashboard.testtakenDetailslabels}}" class=" list-group-item list-group-itemfortestid list-group-itemfortest" data-toggle="modal" data-target="#graphdetails" href="" style="border-padding:0;border-spacing:0;border-collapse:collapse;padding:0;border:none;width:100%;overflow:hidden;white-space:nowrap;background-color: transparent;border-color: transparent;">
+            	<img src="img/test 3.jpg" class="imgwrapper" class="img-rounded" alt="Cinque Terre" >
+
+              <div class="btn btn-lg btn-danger btn-block"  style="padding-top: 2%;margin-top: 5%;margin-bottom: 15%;"> Performance</div></a>
+          </div>
+        </div>
+     </div>
+ </div>
+</div>
+
+
+
+ <div  class="row container-fluid">
+
+  <div class="col-sm-4 w3-card-2" style="width:100%;">
+
+    <br/>
+
+     <br/>
+    </div>
+  </div>
+
+   <!-- Modal for creating Questions -->
+        <div class="modal fade" id="graphdetails" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">: Performance of the User :</h4>
+                    </div>
+                    <div style="background-color: #E8E9E9;" class="modal-body">
+                     <canvas   id="myChart" width="300" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+ 
+ <script>
+
+function myfunc(){
+  var executed;
+  if(executed == false)
+  {
+    loaction.reload();
+    executed = true;
+  }
+
+}
+ var dat = [];
+
+var label = [];
+  $(document).on("click",".list-group-itemfortestid", function() {
+                var Id = $(this).data('id');
+                console.log(Id);
+                if(dat.length == 0)
+                {
+                for(var i=0;i<Id.length;i++)
+                {
+                  
+                  dat.push(Id[i]);
+                
+                }
+              }
+            });
+  $(document).on("click",".list-group-itemfortest", function() {
+                var testname = $(this).data('user');
+                console.log(testname);
+                if(label.length == 0)
+                  {
+                for(var i=0;i<testname.length;i++)
+                {
+                  
+                  label.push(testname[i]);
+                }
+                }
+            });
+var ctx = document.getElementById("myChart").getContext('2d');
+console.log(ctx);
+console.log(dat);
+console.log(label);
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: label,
+        datasets: [{
+            label: 'Performance Graph Of Tests Given',
+            data: dat,
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+<br/>
+
+
+
