@@ -25,7 +25,7 @@ Just Create an account with username Admin.
 
    3).  User test taking system -
    
-              a) Once user starts the test, he should first see an instructions screen containing. It  also contains the rules of the test.
+              a) Once user starts the test, he will first see an instructions screen containing. It  also contains the rules of the test.
               b) Once the user reads the instructions and accepts the rules (single accept button), The test timer will start and the screen should display the test questions and options associated with it.
               c) User can choose only one option as answer for every question.
               d) The test  have a time limit. The test window will automatically close once the timeout occurs irrespective of how many questions have been answered. The system  submits the answers automatically.
