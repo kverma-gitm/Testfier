@@ -1,0 +1,688 @@
+<!-- W3 schools styles-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div ng-controller="adminCtrl as admin">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <br/>
+       
+                <h2 style="color: white;" align="center">&nbsp;Testifier-Test your limits</h2>
+            </a>
+            <ul align="right" class="nav navbar-nav pull-right">
+                <button align="right" type="button" style="margin:7px" class="btn btn-logged btn-success dropdown-toggle" ng-init="dashboard.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome! {{admin.user}}&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li align="center"><a href="" ng-click="admin.logout()">Logout</a></li>
+                </ul>
+            </ul>
+        </div>
+        <br/>
+    </nav>
+
+    <section>
+        <h1 align="center" style="color:white;"> {{admin.heading}} </h1>
+        <br>
+        <div class="row container-fluid">
+        &nbsp;
+            <div class="container col-sm-4  w3-card-2" style="width:33%;">
+                <header class="w3-container w3-green">
+                    <h3 align="center">Test Operations</h3>
+                </header>
+                <div class="w3-container w3-white">
+                    <p align="center"><img align="center" src="img/test 5.jpg" class="img-fluid img-responsive" alt="Responsive image" /></p>
+                </div>
+                <footer class="w3-container w3-blue">
+                    <h5 align="center">
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">
+ Create</button>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">
+  View</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalUpdateTestinitiater">
+  Update</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDeleteTest">
+  Delete</button>
+                    </h5>
+                </footer>
+            </div>
+                 &nbsp;
+            <div class=" container col-sm-4 w3-card-2" style="width:32%;">
+                <header class="w3-container w3-green">
+                    <h3 align="center">Create/View Questions</h3>
+                </header>
+                <div class="w3-container w3-white">
+                    <p align="center"><img align="center" src="img/test 6.jpg" class="img-fluid img-responsive" alt="Responsive image" /></p>
+                </div>
+                <footer class="w3-container w3-blue">
+                    <h5 align="center"><button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal1">
+  &nbsp;&nbsp;&nbsp;Create&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalViewQuestions">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></h5>
+                </footer>
+            </div>
+            &nbsp;
+            <div class=" container col-sm-4 w3-card-2" style="width:33%;">
+                <header class="w3-container w3-green">
+                    <h3 align="center">Update/Delete Question</h3>
+                </header>
+                <div class="w3-container w3-white">
+                    <p align="center"><img align="center" src="img/test 7.jpg" class="img-fluid img-responsive" alt="Responsive image" /></p>
+                </div>
+                <footer class="w3-container w3-blue">
+                    <h5 align="center"><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModalUpdateTestQuestion">
+  &nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModalUpdateQuestion">
+  &nbsp;&nbsp;&nbsp;Delete&nbsp;&nbsp;&nbsp;</button></h5>
+
+                
+                </footer>
+            </div>
+                 &nbsp;
+        </div>
+        <br/>
+        <div class="row container-fluid" style="margin-left: 23%;margin-bottom:5%">
+            <div class=" container col-sm-4 w3-card-2" style="width:59%;">
+                <header class="w3-container w3-green">
+                    <h3 align="center">User Details</h3>
+                </header>
+                <div class="w3-container w3-white">
+                    <p align="center"><img align="center" src="img/test 8.jpg" class="img-fluid img-responsive" alt="Responsive image" /></p>
+                </div>
+                <div class="w3-container w3-white" >
+                    <h5 align="center"><button type="button" class="btn btn-success " ng-click="admin.getUserInfo()">
+  &nbsp;&nbsp;&nbsp;Local User&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary " ng-click="admin.getUserInfofacebook()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Facebook&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-success " ng-click="admin.getUserInfogoogle()">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Google&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></h5>
+
+                    <h5 align="center"><button type="button" class="btn btn-primary " ng-click="admin.getUserInfoforperformance()">
+  &nbsp;&nbsp;&nbsp;Users performance&nbsp;&nbsp;&nbsp;</button></h5>
+                </div>
+            </div>
+
+
+
+
+
+        <!-- scripts for various modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title"> Please Fill Details of the Test </h4>
+                    </div>
+                    <div style="background-color: #E8E9E9;" class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form ng-submit="admin.Create()">
+                                    <div class="form-group">
+                                        <label for="testName">Test Name</label>
+                                        <input type="text" name="testName" id="testName" tabindex="1" ng-model="admin.testName" class="form-control" placeholder="Please enter the Test Name..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testCategory">Test Category</label>
+                                        <input type="text" name="testCategory" id="testCategory" tabindex="1" ng-model="admin.testCategory" class="form-control" placeholder="Please Enter Test Category..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testDetails"><h3></h3>Test Details</label>
+                                        <input type="text" name="testDetails" tabindex="1" ng-model="admin.testDetails" class="form-control" placeholder="Please Enter Test Details..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="score"><h3></h3>Total Score</label>
+                                        <input type="number" name="score" tabindex="1" ng-model="admin.totalScore" class="form-control" placeholder="Please Enter Total Score..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testDuration"><h3></h3>Test Duration(In Seconds)</label>
+                                        <input type="number" name="testDuration" tabindex="1" ng-model="admin.testDuration" class="form-control" placeholder="Please Enter Test Duration..." value="" required="true">
+                                    </div>
+
+                                    <div style="color:green;" class="col-sm-6 col-sm-offset-3">
+                                        <Button style="border: dashed; color:black; font-weight: bold;" type="submit" tabindex="4" class="form-control btn btn-active">Submit</Button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOdal to create questions for test -->
+        <!-- Modal -->
+        <div class="modal fade" id="myModal1" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Select A Test For Creating Questions </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" data-toggle="modal" data-target="#myModal3" data-id="{{test._id}}" class=" list-group-item list-group-itemfortestid">{{test.testName}}-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal for getting All Tests -->
+        <div class="modal fade" id="myModal2" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title"> Available Tests </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" data-toggle="modal" class=" list-group-item">Test Name: {{test.testName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: {{test._id}}</a>
+                            <a href="" class=" list-group-item">Test Details: {{test.testDetails}}</a>
+                            <a href="" class=" list-group-item">Total Score: {{test.totalScore}}</a>
+                            <a href="" class=" list-group-item">Test Duration: {{test.testDuration}}</a>
+                            <a href="" class=" list-group-item">Test Category: {{test.testCategory}}</a>
+                            <a href="" class=" list-group-item">Total Questions: {{test.totalQuestions}}</a>
+                            <p align="center" style="color:white;">Questions</p>
+                            <div class="list-group" ng-repeat="question in test.questions track by $index">
+                                <a href="" class=" list-group-item">Question: {{question.question}}</a>
+                                <a href="" class=" list-group-item">Options: 1){{question.optionA}}&nbsp;&nbsp;    2){{question.optionB}}&nbsp; &nbsp;3){{question.optionC}}&nbsp; &nbsp; 4){{question.optionD}}</a>
+                                <a href="" class=" list-group-item">Answer: {{question.answer}}</a>
+                            </div>
+                            <a href="" data-toggle="modal" class=" list-group-item">Test Attempted by: {{test.testAttemptedBy}}</a>
+                            <h4 style="color:white;" align="center">*******************************************************</h4>
+
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for creating Questions -->
+        <div class="modal fade" id="myModal3" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title"> Please fill the details of the Question </h4>
+                        <h4 align="center" class="modal-title"> You Can Add Upto 10 Questions </h4>
+                    </div>
+                    <div style="background-color: #E8E9E9;" class="modal-body">
+                        <h4 align="center">please Remove '/' symbol from test ID</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form ng-submit="admin.createQuestion()">
+                                    <div class="form-group">
+                                        <label for="id">Test ID:</label>
+                                        <input type="text" name="testId" id="testidofquestion" tabindex="1" ng-model="admin.idoftest" class="form-control" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Question">Question :</label>
+                                        <input type="text" name="Question" id="question" tabindex="1" ng-model="admin.question" class="form-control" placeholder="Please Enter Question..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option A</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionA" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option B</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionB" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option C</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionC" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option D</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionD" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Question">Answer :</label>
+                                        <input type="text" name="Answer" id="answer" tabindex="1" ng-model="admin.answer" class="form-control" placeholder="Please Enter Answer To Question in terms of Value like 1,2,3 or 4" value="" required="true">
+                                    </div>
+                                    <div style="color:green;" class="col-sm-6 col-sm-offset-3">
+                                        <button style="border: dashed; color:black; font-weight: bold;" type="submit" tabindex="4" class="form-control btn btn-active">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal to delete test -->
+        <div class="modal fade" id="myModalDeleteTest" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Click on Test To Delete </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" ng-click="admin.deleteTest(test._id)" class="list-group-item list-group-item">{{test.testName}}- &nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal to delete test -->
+        <div class="modal fade" id="myModalViewQuestions" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Click on Test To view All Questions Of That Test </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" ng-click="admin.viewQuestion(test._id)" class="list-group-item list-group-item">{{test.testName}}- &nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal to delete test -->
+        <div class="modal fade" id="myModalViewQues" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Questions </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="question in admin.quesArray track by $index">
+                            <a href="" class=" list-group-item">Question: {{question.question}}</a>
+                            <a href="" class=" list-group-item">Options: 1){{question.optionA}}&nbsp;&nbsp;    2){{question.optionB}}&nbsp; &nbsp;3){{question.optionC}}&nbsp; &nbsp; 4){{question.optionD}}</a>
+                            <a href="" class=" list-group-item">Answer: {{question.answer}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModalUpdateTestinitiater" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Select A Test To Update </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" data-toggle="modal" data-target="#myModalUpdateTest" data-id="{{test._id}}" class=" list-group-item list-group-itemfortestid">{{test.testName}}- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModalUpdateTest" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Fill Details To Update Test </h4>
+                    </div>
+                    <div style="background-color: #E8E9E9;" class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form ng-submit="admin.UpdateTest()">
+                                    <h3 align="center">Please remove '/' Symbol From Test ID</h3>
+                                    <div class="form-group">
+                                        <label for="testName">Test ID</label>
+                                        <input type="text" name="testName" id="testidofupdate" tabindex="1" ng-model="admin.idofupdate" class="form-control" placeholder="Please enter the Test Name..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testName">Test Name</label>
+                                        <input type="text" name="testName" id="testName" tabindex="1" ng-model="admin.testName" class="form-control" placeholder="Please enter the Test Name..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testCategory">Test Category</label>
+                                        <input type="text" name="testCategory" id="testCategory" tabindex="1" ng-model="admin.testCategory" class="form-control" placeholder="Please Enter Test Category..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testDetails"><h3></h3>Test Details</label>
+                                        <input type="text" name="testDetails" tabindex="1" ng-model="admin.testDetails" class="form-control" placeholder="Please Enter Test Details..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="score"><h3></h3>Total Score</label>
+                                        <input type="number" name="score" tabindex="1" ng-model="admin.totalScore" class="form-control" placeholder="Please Enter Total Score..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="testDuration"><h3></h3>Test Duration (In Seconds)</label>
+                                        <input type="number" name="testDuration" tabindex="1" ng-model="admin.testDuration" class="form-control" placeholder="Please Enter Test Duration..." value="" required="true">
+                                    </div>
+
+                                    <div style="color:green;" class="col-sm-6 col-sm-offset-3">
+                                        <Button style="border: dashed; color:black; font-weight: bold;" type="submit" tabindex="4" class="form-control btn btn-active">Submit</Button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to update Question -->
+        <div class="modal fade" id="myModalUpdateQuestion" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Select A Test To Delete Question </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" ng-click="admin.viewUpdateQuestion(test._id) " data-id="{{test._id}}" class="list-group-item list-group-itemforidoftest">{{test.testName}}- &nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal to update question List test -->
+        <div class="modal fade" id="myModalQuestionList" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Questions </h4>
+                        <h4 align="center">remove the '/' symbol from ID </h>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div>
+
+                            <label for="id" style="color:white;">Test ID:</label>
+                            <br/>
+                            <input type="text" name="testId" id="testidofquestionList" tabindex="1" ng-model="admin.idoftest" class="form-control" value="" required="true">
+                            <br/>
+                            <div class="list-group" ng-repeat="question in admin.quesArray track by $index">
+                                <a href="" class=" list-group-item ">Question {{$index+1}}: {{question.question}}</a>
+                                <a href="" class="list-group-item ">Options: 1){{question.optionA}}&nbsp;&nbsp;    2){{question.optionB}}&nbsp; &nbsp;3){{question.optionC}}&nbsp; &nbsp; 4){{question.optionD}}</a>
+                                <a href="" class=" list-group-item">Answer: {{question.answer}}</a>
+
+                                <Button style="color:black; font-weight: bold;" ng-click="admin.DeleteQuestion($index,question._id)" class=" list-group" tabindex="2" class=" btn btn-danger">Delete</Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to update Question -->
+        <div class="modal fade" id="myModalUpdateTestQuestion" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Please Select A Test To Update Question </h4>
+                    </div>
+                    <div style="background-color: #404549;" ng-init="admin.getTests()" class="modal-body">
+                        <div class="list-group" ng-repeat="test in admin.testArray">
+                            <a href="" ng-click="admin.viewUpdateQuestiontoupdate(test._id) " data-id="{{test._id}}" class="list-group-item list-group-itemforidoftest">{{test.testName}}- &nbsp;&nbsp;ID: {{test._id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to update question List test -->
+        <div class="modal fade" id="myModalQuestionListtoupdate" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Questions </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div>
+                            <div class="list-group" ng-repeat="question in admin.quesArray track by $index">
+                                <a href="" class=" list-group-item ">Question {{$index+1}}: {{question.question}}</a>
+                                <a href="" class="list-group-item ">Options: 1){{question.optionA}}&nbsp;&nbsp;    2){{question.optionB}}&nbsp; &nbsp;3){{question.optionC}}&nbsp; &nbsp; 4){{question.optionD}}</a>
+                                <a href="" class=" list-group-item">Answer: {{question.answer}}</a>
+
+                                <Button style="color:black; font-weight: bold;" ng-click="admin.updateform($index,question._id)" class=" list-group" tabindex="2" class=" btn btn-danger">Update</Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Updating Questions -->
+        <div class="modal fade" id="myModalQuestionListtoupdateform" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title"> Please fill the details of the Question </h4>
+                        <h4 align="center" class="modal-title"> You Can Add Upto 10 Questions </h4>
+                    </div>
+                    <div style="background-color: #E8E9E9;" class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form ng-submit="admin.UpdateQuestion()">
+                                    <div class="form-group">
+                                        <label for="Question">Question :</label>
+                                        <input type="text" name="Question" id="question" tabindex="1" ng-model="admin.question" class="form-control" placeholder="Please Enter Question..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option A</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionA" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option B</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionB" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option C</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionC" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option">Option D</label>
+                                        <input type="text" name="option" id="testCategory" tabindex="1" ng-model="admin.optionD" class="form-control" placeholder="" value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Question">Answer :</label>
+                                        <input type="text" name="Answer" id="answer" tabindex="1" ng-model="admin.answer" class="form-control" placeholder="Please Enter Answer To Question in terms of value like 1,2,3 or 4" value="" required="true">
+                                    </div>
+                                    <div style="color:green;" class="col-sm-6 col-sm-offset-3">
+                                        <button style="border: dashed; color:black; font-weight: bold;" type="submit" tabindex="4" class="form-control btn btn-active">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal to get User Info-->
+        <div class="modal fade" id="myModalgetUserinfo" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Local User Info </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="user in admin.userInfo track by $index">
+                            <a href="" class=" list-group-item">Name: {{user.name}}</a>
+                            <a href="" class=" list-group-item">Email:{{user.email}}</a>
+                            <a href="" class=" list-group-item">Mobile Number: {{user.mobileNumber}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to get User Info-->
+        <div class="modal fade" id="myModalgetUserinfofacebook" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Facebook User Info </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="user in admin.userInfofacebook track by $index">
+                            <a href="" class=" list-group-item">Name: {{user.name}}</a>
+
+                            <a href="" class=" list-group-item">ID: {{user.id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to get User Info-->
+        <div class="modal fade" id="myModalgetUserinfogoogle" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Google User Info </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="user in admin.userInfogoogle track by $index">
+                            <a href="" class=" list-group-item">Name: {{user.name}}</a>
+                            <a href="" class=" list-group-item">Email:{{user.email}}</a>
+                            <a href="" class=" list-group-item">ID: {{user.id}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!-- Modal to get User Info-->
+        <div class="modal fade" id="myModalgetUserinfoforperformance" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">All Users Info </h4>
+                        <h4 align="center" class="modal-title"> Please Click on names to get Test Info </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="user in admin.userInfo track by $index">
+                            <a href="" ng-click="admin.getperformanceinfo(user._id)" class=" list-group-item">Name: {{user.name}} ID: {{user._id}}</a>
+                            <a href=""  ng-click="admin.getperformanceinfo(user._id)" class=" list-group-item">Email:{{user.email}}</a>
+                            <a href=""  ng-click="admin.getperformanceinfo(user._id)" class=" list-group-item">Mobile Number: {{user.mobileNumber}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal to get User Info-->
+        <div class="modal fade" id="myModalgetUserinfoforperformanceshow" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title"> Local User Info </h4>
+                    </div>
+                    <div style="background-color: #404549;" class="modal-body">
+                        <div class="list-group" ng-repeat="userinfo in admin.userInfoperformance track by $index">
+                            <a href=""  class=" list-group-item">Test ID: {{userinfo._id}}</a>
+                            <a href=""  class=" list-group-item">Score:{{userinfo.score}}</a>
+                            <a href=""  class=" list-group-item">Total Correct Answer: {{userinfo.totalCorrectAnswers}}</a>
+                             <a href=""  class=" list-group-item">Total wrong Answer: {{userinfo.totalWrongAnswers}}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- javascript code to transfer the data from one modal to another -->
+        <script type="text/javascript">
+            $(document).on("click", ".list-group-itemfortestid", function() {
+                var Id = $(this).data('id');
+                console.log(Id);
+                $("#testidofquestion").val(Id + '/');
+                $("#testidofupdate").val(Id + '/');
+            });
+
+            $(document).on("click", ".list-group-itemforidofquestion", function() {
+                var Id = $(this).data('id');
+                console.log(Id);
+                $("#quesidofquestionList").val(Id + '/');
+            });
+            $(document).on("click", ".list-group-itemforidoftest", function() {
+                var Id = $(this).data('id');
+                console.log(Id);
+                $("#testidofquestionList").val(Id + '/');
+
+            });
+
+        </script>
