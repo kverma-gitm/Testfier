@@ -1,0 +1,44 @@
+{
+  "name": "Testfier",
+  "version": "1.0.0",
+  "description": " Online Test Taking System system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Online Exam",
+    "Test",
+    "questions",
+    "MEAN",
+    "node.js",
+    "angular.js",
+    "Express.js"
+  ],
+  "author": "Kartik Verma",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "connect-redis": "^3.3.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "express": "^4.16.1",
+    "express-flash": "0.0.2",
+    "express-jwt": "^5.3.0",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.0.1",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.1",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
+  }
+}
