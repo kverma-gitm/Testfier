@@ -1,6 +1,5 @@
 # Testifier- Online test taking system
  
- Site : http://ec2-18-216-184-114.us-east-2.compute.amazonaws.com/#/
 
 ### Admin Account Requirements
     ```
