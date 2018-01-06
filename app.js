@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
 app.use(cookieParser());
 
 //including passport module from other file...
-require('./config/passport')(passport);
+require('./server/config/passport')(passport);
 
 
 
@@ -56,25 +56,25 @@ app.use(flash()); // use connect-flash for flash messages stored in session...
 app.use(express.static(path.resolve(__dirname,'./../public')));
 
 //response generating Liberary
-var resGenerator = require('.server//libs/resGenerator');
+var resGenerator = require('./server//libs/resGenerator');
 
 //Including User model and UserAuth Model
-var userModel = require('.server/app/models/User');
+var userModel = require('./server/app/models/User');
 
 //including controller files
-var Routes = require('.server/app/controllers/routes');
+var Routes = require('./server/app/controllers/routes');
 app.use('/users', Routes);
 
-var TestRoutes = require('.server/app/controllers/testRoutes');
+var TestRoutes = require('./server/app/controllers/testRoutes');
 app.use('/tests', TestRoutes);
 
-require('.server/app/controllers/facebookRoute')(app, passport);
+require('./server/app/controllers/facebookRoute')(app, passport);
 
-require('.server/app/controllers/googleRoute')(app, passport);
+require('./server/app/controllers/googleRoute')(app, passport);
 
 
-var UserAuth = require('.server/app/models/UserAuth');
-var GoogleAuth = require('.server/app/models/GoogleAuth');
+var UserAuth = require('./server/app/models/UserAuth');
+var GoogleAuth = require('./server/app/models/GoogleAuth');
 
 //User Information of facebook
 
