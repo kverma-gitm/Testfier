@@ -1,62 +1,41 @@
-//Including Express Module....
 var express = require('express');
-//creating an Instance of Express Module...
 var app =express();
-//Including Mongoose for databse connectivity...
 var mongoose = require('mongoose');
-//Including body-parser to parse the header
 var bodyParser = require('body-parser');
-//Including cookie-parser to parse the cookie...
 var cookieParser = require('cookie-parser');
-//Create a session middleware....
 var session = require('express-session');
-//Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 var methodOverride = require('method-override');
-//Including path module to include static files...
 var path = require('path');
-//includig file system to read and write files...
 var fs = require('fs');
-//Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. fonts) on a web page to be 
-//requested from another domain outside the domain from which the first resource was served.
-////HTTP request logger middleware for node.js
+var cors = require('cors');
 var logger = require('morgan');
-//including passport module for using passport strategy...
 var passport = require('passport');
-//for showing flsh messages when there is any success or failure events occur...
 var flash = require('connect-flash');
-//using cors for cross origin file sharing
 
-var http = require('http');
-http.createServer(function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-});
+app.use(cors({
+    origin: '*',
+    withCredentials: false,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin' ]
+}));
 
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
-//parsing  and cookie middlewares
+//body parser and cookie parser middleware
 app.use(bodyParser.json({limit:'10mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
 app.use(cookieParser());
 
-//including passport module from other file...
+//including passport module from other file
 require('./server/config/passport')(passport);
 
-
-
-
-app.use(passport.initialize()); //to initialize passport service...
-app.use(passport.session()); // persistent login sessions...
-app.use(flash()); // use connect-flash for flash messages stored in session...
+app.use(passport.initialize()); //to initialize passport service
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 //public folder as static
-app.use(express.static(path.resolve(__dirname,'./../public')));
+app.use(express.static(path.resolve(__dirname,'public')));
 
 //response generating Liberary
-var resGenerator = require('./server//libs/resGenerator');
+var resGenerator = require('./server/libs/resGenerator');
 
 //Including User model and UserAuth Model
 var userModel = require('./server/app/models/User');
@@ -81,7 +60,6 @@ var GoogleAuth = require('./server/app/models/GoogleAuth');
 app.get('/getUserinfofacebook', function(req, res) {
   UserAuth.find(function(error, user) {
     if (error) {
-      //console.log("error");
       var err = resGenerator.generate(true, "Something is not working, error  : " + error, 500, null);
       res.json(err);
     } 
@@ -98,7 +76,6 @@ app.get('/getUserinfofacebook', function(req, res) {
 app.get('/getUserinfogoogle', function(req, res) {
   GoogleAuth.find(function(error, user) {
     if (error) {
-      //console.log("error");
       var err = resGenerator.generate(true, "Something is not working, error  : " + error, 500, null);
       res.json(err);
     } 
@@ -116,10 +93,10 @@ var port = 3000;
 app.use(logger('dev'));
 
 //Data Base Connection
-var dbPath = "mongodb://localhost/TestPortalDB";
-mongoose.connect(dbPath);
+var dbPath = "mongodb://localhost/TestForAdmin";
+mongoose.connect(dbPath,{useMongoClient: true});
 mongoose.connection.once('open',function(){
-  console.log("Database Connection Established Successfully...");
+  console.log("Database Connection Established Successfully");
 });
 
 
@@ -136,5 +113,5 @@ app.use(function(req, res, next){
 
 //Listening on port 3000
 app.listen(port,  function(){
-  console.log("Testifier is Running on port:" +port);
+  console.log("Testfier is Running on port:" +port);
 });
